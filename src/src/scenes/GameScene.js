@@ -180,31 +180,54 @@ export default class GameScene extends SceneBase {
 		{ type: 'image', x: 0, y: 0, key: 'GameScene_background' },
 		{ type: 'image', x: 0, y: 0, key: 'GameScene_backgroundBorder' },
 		{ type: 'image', x: 960, y: 495, key: 'GameScene_center', ox: 0.5, oy: 0.5 },
-		{ type: 'image', x: 852, y: 495, key: 'GameScene_rizhiBar', ox: 0.5, oy: 0.5 },
-		{ type: 'image', x: 960, y: 390, key: 'GameScene_rizhiBarLand', ox: 0.5, oy: 0.5 },
-		{ type: 'image', x: 1073, y: 495, key: 'GameScene_rizhiBar', ox: 0.5, oy: 0.5 },
-		{ type: 'image', x: 960, y: 606, key: 'GameScene_rizhiBarLand', ox: 0.5, oy: 0.5 },
+		{ type: 'image', x: 852, y: 495, key: 'GameScene_rizhiBar', name: "leftRiZhiBar", ox: 0.5, oy: 0.5 },
+		{ type: 'image', x: 960, y: 390, key: 'GameScene_rizhiBarLand', name: "topRiZhiBar", ox: 0.5, oy: 0.5 },
+		{ type: 'image', x: 1073, y: 495, key: 'GameScene_rizhiBar', name: "rightRiZhiBar", ox: 0.5, oy: 0.5 },
+		{ type: 'image', x: 960, y: 606, key: 'GameScene_rizhiBarLand', name: "bottomRiZhiBar", ox: 0.5, oy: 0.5 },
 
 		{ type: 'image', x: 58, y: 55, key: 'Common_bottomB' },
 		{ type: 'image', x: 58 + 54, y: 55, key: 'Common_bottomB' },
 		{ type: 'image', x: 58 + 54 * 2, y: 55, key: 'Common_bottomB' },
 		{ type: 'image', x: 58 + 54 * 3, y: 55, key: 'Common_bottomB' },
 		{ type: 'image', x: 58 + 54 * 4, y: 55, key: 'Common_bottomB' },
-		{ type: 'image', x: 58, y: 33, key: 'Common_bottomM1' },
-		{ type: 'image', x: 58 + 54, y: 33, key: 'Common_bottomB' },
-		{ type: 'image', x: 58 + 54 * 2, y: 33, key: 'Common_bottomB' },
-		{ type: 'image', x: 58 + 54 * 3, y: 33, key: 'Common_bottomB' },
-		{ type: 'image', x: 58 + 54 * 4, y: 33, key: 'Common_bottomB' },
+		{ type: 'image', x: 58, y: 33, key: 'Common_bottomM1', name: 'doraPointPai1' },
+		{ type: 'image', x: 58 + 54, y: 33, key: 'Common_bottomB', name: 'doraPointPai2' },
+		{ type: 'image', x: 58 + 54 * 2, y: 33, key: 'Common_bottomB', name: 'doraPointPai3' },
+		{ type: 'image', x: 58 + 54 * 3, y: 33, key: 'Common_bottomB', name: 'doraPointPai4' },
+		{ type: 'image', x: 58 + 54 * 4, y: 33, key: 'Common_bottomB', name: 'doraPointPai5' },
 
-		{ type: 'text', x: 960, y: 430, text: '东', name: 'dongFeng', config: { fill: "#28b8a2", fontSize: 30 }, ox: 0.5, oy: 0.5, angle: 0 },
-		{ type: 'text', x: 895, y: 495, text: '南', name: 'nanFeng', config: { fill: "#28b8a2", fontSize: 30 }, ox: 0.5, oy: 0.5, angle: Math.PI * 1.5 },
-		{ type: 'text', x: 960, y: 560, text: '西', name: 'xiFeng', config: { fill: "#28b8a2", fontSize: 30 }, ox: 0.5, oy: 0.5, angle: Math.PI },
-		{ type: 'text', x: 1025, y: 495, text: '北', name: 'beiFeng', config: { fill: "#28b8a2", fontSize: 30 }, ox: 0.5, oy: 0.5, angle: Math.PI / 2 },
+		{ type: 'text', x: 960, y: 430, text: '东', name: 'dongFengText', config: { fill: "#28b8a2", fontSize: 30 }, ox: 0.5, oy: 0.5, angle: 0 },
+		{ type: 'text', x: 895, y: 495, text: '南', name: 'nanFengText', config: { fill: "#28b8a2", fontSize: 30 }, ox: 0.5, oy: 0.5, angle: Math.PI * 1.5 },
+		{ type: 'text', x: 960, y: 560, text: '西', name: 'xiFengText', config: { fill: "#28b8a2", fontSize: 30 }, ox: 0.5, oy: 0.5, angle: Math.PI },
+		{ type: 'text', x: 1025, y: 495, text: '北', name: 'beiFengText', config: { fill: "#28b8a2", fontSize: 30 }, ox: 0.5, oy: 0.5, angle: Math.PI / 2 },
 		{ type: 'text', x: 960, y: 495, text: '00', name: 'timeUpText', config: { fontFamily: 'notoSerif', fill: "#FFFFFF", fontSize: 72, stroke: '#333', strokeThickness: 2 }, ox: 0.5, oy: 0.5 }
 	];
+	dongFengText = null; //东南西北自风
+	nanFengText = null;
+	xiFengText = null;
+	beiFengText = null;
+	timeUpText = null; //倒计时文本
+	leftRiZhiBar = null; //立直棒
+	topRiZhiBar = null;
+	rightRiZhiBar = null;
+	bottomRiZhiBar = null;
+	doraPointPai = []; //宝牌指示牌数组
 
 	constructor(scene) {
 		super(scene, GameScene.resource_position);
-		//this.charactorChangeCardBar = this.getItemByName('charactorChangeCardBar');
+		this.dongFengText = this.getItemByName('dongFengText');
+		this.nanFengText = this.getItemByName('nanFengText');
+		this.xiFengText = this.getItemByName('xiFengText');
+		this.beiFengText = this.getItemByName('beiFengText');
+		this.timeUpText = this.getItemByName('timeUpText');
+		this.leftRiZhiBar = this.getItemByName('leftRiZhiBar');
+		this.topRiZhiBar = this.getItemByName('topRiZhiBar');
+		this.rightRiZhiBar = this.getItemByName('rightRiZhiBar');
+		this.bottomRiZhiBar = this.getItemByName('bottomRiZhiBar');
+		this.doraPointPai.push(this.getItemByName('doraPointPai1'));
+		this.doraPointPai.push(this.getItemByName('doraPointPai2'));
+		this.doraPointPai.push(this.getItemByName('doraPointPai3'));
+		this.doraPointPai.push(this.getItemByName('doraPointPai4'));
+		this.doraPointPai.push(this.getItemByName('doraPointPai5'));
 	}
 };
