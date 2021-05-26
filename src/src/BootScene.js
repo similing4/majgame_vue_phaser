@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import Config from '../config/gameconf.js';
 
 export default class BootScene extends Phaser.Scene {
     init(){

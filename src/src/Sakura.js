@@ -2,18 +2,18 @@ export default class Sakura {
     scene;
     width;
     height;
-    constructor(scene,w,h){
+    constructor(scene, w, h) {
         this.scene = scene;
-        this.width = (w?w:window.config.width);
-        this.height = (h?h:window.config.height);
+        this.width = (w ? w : window.config.scale.width);
+        this.height = (h ? h : window.config.scale.height);
     }
     //随机选择列表中的一项
-    random_off(list){
-        var i = this.random_between(0, list.length-1);
+    random_off(list) {
+        var i = this.random_between(0, list.length - 1);
         return list[i];
     }
     //生成随机数
-    random_between(min, max){
+    random_between(min, max) {
         return Math.round(Math.random() * (max - min) + min);
     }
     createParticles() {
@@ -29,7 +29,7 @@ export default class Sakura {
             speedX: -160 * side * 2, //飘动速度为160
             accelerationX: { min: 10 * side, max: 25 * side }, //横向的加速度
             accelerationY: { min: 5, max: 20 }, //纵向的加速度
-            angle: { min: -85, max: -95 }, 
+            angle: { min: -85, max: -95 },
             rotate: { min: -180, max: 180 },
             lifespan: { min: 5000, max: 9000 },
             frequency: 600,

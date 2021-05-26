@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
-import BootScene from "BootScene.js"
-import PreloadScene from "PreloadScene.js"
-import StageScene from "StageScene.js"
-class Game extends Phaser.Game {
+import BootScene from "./BootScene.js"
+import PreloadScene from "./PreloadScene.js"
+import StageScene from "./StageScene.js"
+export default class Game extends Phaser.Game {
     constructor() {
         super(window.config);
         this.scene.add("BootScene", BootScene);
